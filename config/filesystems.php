@@ -34,6 +34,11 @@ return [
             'driver' => 'local',
             'root'   => storage_path('app'),
         ],
+        
+        'nfs' => [
+            'driver' => 'local',
+            'root'   => '/mnt/nfs/home/storage/indiantrainsim',
+        ],
 
         'public' => [
             'driver'     => 'local',
