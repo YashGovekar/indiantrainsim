@@ -35,11 +35,15 @@ class FileService
         return $files;
     }
 
-    public function upload(UploadedFile $file, string $path, string $name)
+    public function upload(UploadedFile $file, string $path, string $name, $disk = null)
     {
         $user = Auth::user();
 
-        return Storage::putFileAs(
+        if (!$disk) {
+            $disk = config('filesystems.default');
+        }
+
+        return Storage::disk($disk)->putFileAs(
             $path,
             $file,
             str_replace(' ', '_', $name).'_By_'.$user->username.'.'.$file->getClientOriginalExtension()
@@ -60,7 +64,7 @@ class FileService
 
     public function uploadPublicly(UploadedFile $file, string $path, string $name)
     {
-        return $this->upload($file, 'public/'.$path, $name);
+        return $this->upload($file, $path, $name, 'public');
     }
 
     public function store(array $data, array $file_info): bool
