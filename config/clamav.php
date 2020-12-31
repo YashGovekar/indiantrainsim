@@ -20,7 +20,7 @@ return [
     | This option defines the location to the unix socket-file. For example
     | /var/run/clamav/clamd.ctl
     */
-    'unix_socket' => env('CLAMAV_UNIX_SOCKET', '/var/run/clamav/clamd.ctl'),
+    'unix_socket' => env('CLAMAV_UNIX_SOCKET', '/var/run/clamd.scan/clamd.sock'),
 
     /*
     |--------------------------------------------------------------------------
