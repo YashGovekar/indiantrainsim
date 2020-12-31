@@ -23,6 +23,7 @@ class FileController extends Controller
      * FileController constructor.
      * @param FileSectionService $fileSectionSvc
      * @param FileService $fileSvc
+     * @param UserService $userSvc
      */
     public function __construct(
         FileSectionService $fileSectionSvc,
