@@ -37,7 +37,7 @@ return [
         
         'nfs' => [
             'driver' => 'local',
-            'root'   => '/mnt/nfs/home/storage/indiantrainsim',
+            'root'   => '/mnt/nfs/home/storage/indiantrainsim/',
         ],
 
         'public' => [
