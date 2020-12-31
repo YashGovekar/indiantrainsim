@@ -94,7 +94,7 @@ class FileService
     public function destroy($id): bool
     {
         $file = $this->fileRepo->find($id);
-        if ($this->delete([$file->path, $file->image])) {
+        if ($this->delete([$file->path]) && $this->deletePublicFiles([$file->image])) {
             try {
                 $file->delete();
                 return true;
@@ -110,6 +110,17 @@ class FileService
     {
         try {
             Storage::delete($files);
+            return true;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+    }
+
+    public function deletePublicFiles(array $files): bool
+    {
+        try {
+            Storage::disk('public')->delete($files);
             return true;
         } catch (Exception $e) {
             Log::error($e->getMessage());
