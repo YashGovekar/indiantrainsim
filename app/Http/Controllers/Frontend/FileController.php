@@ -70,12 +70,16 @@ class FileController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $validate = '';
+        if (config('app.enable_virus_scan')) {
+            $validate = 'clamav';
+        }
         $request->validate([
-            'file'            => 'required|file',
+            'file'            => 'required|file|'.$validate,
             'name'            => 'required',
             'description'     => 'required',
             'file_section_id' => 'required',
-            'image_file'      => 'required|file|mimes:png,jpg,jpeg,gif',
+            'image_file'      => 'required|file|mimes:png,jpg,jpeg,gif|'.$validate,
         ]);
         $message = '';
         if ($request->hasFile('file') && $request->hasFile('image_file')) {

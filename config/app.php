@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'enable_virus_scan' => env('ENABLE_VIRUS_SCAN'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

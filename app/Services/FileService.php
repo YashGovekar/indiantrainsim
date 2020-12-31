@@ -179,6 +179,6 @@ class FileService
 
     public function hotFiles()
     {
-        return $this->getAll()->sortByDesc('downloads_count');
+        return $this->getAll(true)->sortByDesc('downloads_count');
     }
 }
